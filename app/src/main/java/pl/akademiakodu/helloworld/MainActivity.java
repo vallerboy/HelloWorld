@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         loadMinds();
     }
 
+    @Override
+    protected void onPause() {
+        // To odpali się, gdy aplikcja przejdzie do backgroundu
+        super.onPause();
+    }
+
+
+
     private void loadMinds() {
         mindList.add("Witaj świecie!");
         mindList.add("Jak leci życie?");
@@ -56,6 +65,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if(v.getId() == buttonChange.getId()) {
             Random rand = new Random();
             textView.setText(mindList.get(rand.nextInt(mindList.size())));
+            Toast.makeText(this, "Witaj świecie to ja Toast!", Toast.LENGTH_SHORT).show();
         }
     }
 }
